@@ -1,0 +1,85 @@
+# Visual Studio / .NET Framework .gitignore
+# Tracks files that should not be committed for Visual Studio projects targeting .NET Framework 4.x
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio workspace
+.vs/
+.vscode/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+TestResults/
+artifacts/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+packages.config
+
+# MSBuild / compilation
+*.log
+*.tlog
+*.userprops
+*.ipch
+*.iobj
+*.pch
+*.ilk
+
+# Visual Studio database and caches
+*.sdf
+*.cache
+*.db
+*.opendb
+
+# Symbols and debug
+*.pdb
+*.mdb
+
+# Publish outputs
+*.Publish.xml
+*.publishsettings
+PublishProfiles/
+*_PublishedFiles/
+
+# JetBrains Rider / IntelliJ
+.idea/
+*.sln.iml
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# NCrunch
+*.ncrunch*
+_NCrunch_*
+
+# Coverage / profiling
+*.dotCover
+coverage.xml
+coverage*
+*.lcov
+
+# IIS Express
+iisexpress/
+.vs/
+
+# Node/npm (if present)
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.vspscc
+*.vssscc
