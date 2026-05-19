@@ -1,0 +1,32 @@
+name: Windows .NET framework CI/CD Pipeline
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Framework
+        uses: microsoft/setup-msbuild@v3
+
+      - name: Build solution
+        run: msbuild MSTestDemo.sln /p:Configuration=Debug
+
+      # - name: Run tests
+      #   run: vstest.console.exe YourTestProject.dll /Logger:trx
+
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            **/bin/Debug/*
+            **/bin/Release/*
