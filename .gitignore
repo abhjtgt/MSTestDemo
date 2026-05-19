@@ -83,3 +83,6 @@ Thumbs.db
 # Misc
 *.vspscc
 *.vssscc
+
+.sonarqube
+sonarRun.cmd

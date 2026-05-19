@@ -18,10 +18,10 @@ jobs:
         uses: microsoft/setup-msbuild@v3
 
       - name: Build solution
-        run: msbuild MSTestDemo.sln /p:Configuration=Debug
+        run: msbuild MSTestDemo.sln /p:Configuration=Debug -restore
 
-      # - name: Run tests
-      #   run: vstest.console.exe YourTestProject.dll /Logger:trx
+      - name: Run tests
+        run: vstest.console.exe MathDemoCode\bin\Debug\net48\MathDemoCode.dll /logger:trx;LogFileName=UnitTest.trx /ResultsDirectory:TestResults
 
       - name: Publish artifacts
         uses: actions/upload-artifact@v4
@@ -30,3 +30,4 @@ jobs:
           path: |
             **/bin/Debug/*
             **/bin/Release/*
+            TestResults/*
