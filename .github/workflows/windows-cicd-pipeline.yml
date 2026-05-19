@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - "**"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,11 +18,21 @@ jobs:
       - name: Setup .NET Framework
         uses: microsoft/setup-msbuild@v3
 
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/MathDemoCode.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Build solution
         run: msbuild MSTestDemo.sln /p:Configuration=Debug -restore
 
       - name: Run tests
-        run: vstest.console.exe MathDemoCode\bin\Debug\net48\MathDemoCode.dll /logger:trx;LogFileName=UnitTest.trx /ResultsDirectory:TestResults
+        run: |
+          $Env:Path += ";C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow"
+          vstest.console.exe MathDemoCode\bin\Debug\net48\MathDemoCode.dll "/logger:trx;LogFileName=UnitTest.trx" "/ResultsDirectory:TestResults"
 
       - name: Publish artifacts
         uses: actions/upload-artifact@v4
